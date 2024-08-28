@@ -6,7 +6,7 @@ def crear_parser():
         description="Aplicación CLI para obtener datos climáticos de una ciudad específica."
     )
     parser.add_argument(
-        "ciudad",
+        "--ciudad",
         type=str,
         help="Nombre de la ciudad para la cual deseas obtener los datos climáticos."
     )
