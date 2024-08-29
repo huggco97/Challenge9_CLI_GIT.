@@ -24,7 +24,7 @@ def probar_cli():
         sys.exit(1)
 
     # Prueba: Obtener clima para una ciudad no válida
-    print("Prueba: Obtener clima para una ciudad no válida 'CiudadInexistente'")
+    print("Prueba: Obtener clima para una ciudad no válida 'Ciudad_Inexistente'")
     if not ejecutar_comando("python cli.py --ciudad Namekusein"):
         sys.exit(1)
 
