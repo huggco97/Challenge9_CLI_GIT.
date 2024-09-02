@@ -1,5 +1,5 @@
 requests
-dotenv
+python-dotenv
 pytest
 black
 flake8

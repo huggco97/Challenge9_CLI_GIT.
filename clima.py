@@ -14,15 +14,22 @@ traducciones_clima = {
     "thunderstorm": "tormenta eléctrica",
     "snow": "nieve",
     "mist": "niebla",
-    "overcast clouds": "nubes cubiertas"
+    "overcast clouds": "nubes cubiertas",
 }
+
 
 def eliminar_acentos(texto):
     # Normalizar la cadena y eliminar los acentos
-    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
+    return "".join(
+        c
+        for c in unicodedata.normalize("NFD", texto)
+        if unicodedata.category(c) != "Mn"
+    )
+
 
 # Cargar las variables del archivo .env
 load_dotenv()
+
 
 def obtener_clima(ciudad):
     api_key = os.getenv("API_KEY")
@@ -40,18 +47,20 @@ def obtener_clima(ciudad):
 
         datos = respuesta.json()
 
-        if 'main' in datos:
+        if "main" in datos:
             # Inicializar el traductor
             descripcion_ingles = datos["weather"][0]["description"]
-            
+
             # Traducir la descripción usando el diccionario
-            descripcion_espanol = traducciones_clima.get(descripcion_ingles, descripcion_ingles)
-            ciudad_sin_acento = eliminar_acentos(datos["name"]) 
+            descripcion_espanol = traducciones_clima.get(
+                descripcion_ingles, descripcion_ingles
+            )
+            ciudad_sin_acento = eliminar_acentos(datos["name"])
             return {
                 "ciudad": ciudad_sin_acento,
                 "temperatura": datos["main"]["temp"],
                 "descripcion": descripcion_espanol,
-                "humedad": datos["main"]["humidity"]
+                "humedad": datos["main"]["humidity"],
             }
         else:
             print("La API no devolvió los datos esperados.")
